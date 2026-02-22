@@ -136,7 +136,7 @@ export default function Login({ usuario, mensajeProteccion }) {
       </form>
 
       <footer className="w-full h-16 bg-blue-600 flex justify-center items-center text-white mt-auto">
-        <h1>by DAMAC_</h1>
+        <h1>Derechos Reservados S.A. de C.V.</h1>
       </footer>
     </div>
   );

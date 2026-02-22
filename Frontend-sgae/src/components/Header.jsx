@@ -1,4 +1,4 @@
-import logoSec from "../assets/logoSec.png";
+import logoSec from "../assets/LogoSec.png";
 import logosep from "../assets/logosep.png";
 
 export default function Header() {
