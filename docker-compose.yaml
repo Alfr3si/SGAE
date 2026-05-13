@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: ./b_SGAE
+    container_name: sgae_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./b_SGAE:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  frontend:
+    build: ./f_SGAE
+    container_name: sgae_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./f_SGAE:/app
+    depends_on:
+      - backend
