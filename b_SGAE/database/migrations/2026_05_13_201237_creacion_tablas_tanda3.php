@@ -12,43 +12,36 @@ return new class extends Migration
         Schema::create('titulos', function (Blueprint $table) {
             $table->id('ID_titulo'); // PRIMARY KEY IDENTITY
             $table->string('Nombre', 100); // VARCHAR(100)
-            $table->timestamps();
         });
 
         Schema::create('especialidades', function (Blueprint $table) {
             $table->id('ID_especl');
             $table->string('Nombre', 100);
-            $table->timestamps();
         });
 
         Schema::create('aulas', function (Blueprint $table) {
             $table->id('ID_aula');
             $table->string('Salon', 50);
-            $table->timestamps();
         });
 
         Schema::create('grados', function (Blueprint $table) {
             $table->id('ID_grado');
             $table->string('Grado', 50);
-            $table->timestamps();
         });
 
         Schema::create('letras', function (Blueprint $table) {
             $table->id('ID_letra');
             $table->string('Letra', 5);
-            $table->timestamps();
         });
 
         Schema::create('niveles', function (Blueprint $table) {
             $table->id('ID_nivel');
-            $table->string('Grupo', 50); // Mapeado de VARCHAR(50)
-            $table->timestamps();
+            $table->string('Nivel', 50); // Mapeado de VARCHAR(50)
         });
 
         Schema::create('conducta', function (Blueprint $table) {
             $table->id('ID_conducta');
             $table->string('Conducta', 100);
-            $table->timestamps();
         });
 
         // --- TABLAS CON RELACIONES ---
@@ -60,17 +53,15 @@ return new class extends Migration
             $table->foreignId('ID_grado')->constrained('grados', 'ID_grado');
             $table->foreignId('ID_aula')->constrained('aulas', 'ID_aula');
             $table->foreignId('ID_nivel')->constrained('niveles', 'ID_nivel');
-            $table->timestamps();
         });
 
         // Tabla Alumnos (Depende de usuarios, conducta, grupos)
-        Schema::create('Alumnos', function (Blueprint $table) {
+        Schema::create('alumnos', function (Blueprint $table) {
             $table->id('ID_alumno');
             $table->string('Matricula', 20)->unique(); // UNIQUE NOT NULL
             $table->foreignId('ID_usuario')->constrained('usuarios', 'ID_usuario');
             $table->foreignId('ID_conducta')->constrained('conducta', 'ID_conducta');
             $table->foreignId('ID_grupo')->constrained('grupos', 'ID_grupo');
-            $table->timestamps();
         });
 
         // Tabla Periodos (Depende de niveles)
@@ -79,7 +70,6 @@ return new class extends Migration
             $table->string('Nombre', 50);
             $table->integer('Orden'); // INT NOT NULL
             $table->foreignId('ID_nivel')->constrained('niveles', 'ID_nivel');
-            $table->timestamps();
         });
     }
 
@@ -87,7 +77,7 @@ return new class extends Migration
     {
         // Borrar en orden inverso para evitar conflictos de FK
         Schema::dropIfExists('periodos');
-        Schema::dropIfExists('Alumnos');
+        Schema::dropIfExists('alumnos');
         Schema::dropIfExists('grupos');
         Schema::dropIfExists('conducta');
         Schema::dropIfExists('niveles');

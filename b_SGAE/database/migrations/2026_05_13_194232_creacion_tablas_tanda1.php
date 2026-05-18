@@ -11,21 +11,18 @@ return new class extends Migration
         Schema::create('generos', function (Blueprint $table) {
             $table->id('ID_genero'); // Primary Key Identity
             $table->string('tipo', 15); // VARCHAR(15)
-            $table->timestamps(); // Agrega created_at y updated_at
         });
 
         // 2. Tabla Estatus
         Schema::create('estatus', function (Blueprint $table) {
             $table->id('ID_estatus');
             $table->string('Estatus', 50);
-            $table->timestamps();
         });
 
         // 3. Tabla Turno
         Schema::create('turnos', function (Blueprint $table) {
             $table->id('ID_turno');
             $table->string('Turno', 50);
-            $table->timestamps();
         });
 
         // 4. Tabla Usuarios con Llaves Foráneas
@@ -48,8 +45,6 @@ return new class extends Migration
             $table->foreignId('ID_genero')->constrained('generos', 'ID_genero');
             $table->foreignId('ID_turno')->constrained('turnos', 'ID_turno');
             $table->foreignId('ID_estatus')->constrained('estatus', 'ID_estatus');
-
-            $table->timestamps();
         });
     }
 

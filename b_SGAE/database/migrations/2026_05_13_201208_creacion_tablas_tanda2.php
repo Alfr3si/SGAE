@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id('ID_Acceso'); // PRIMARY KEY IDENTITY(1,1)
             $table->string('Nivel', 50); // VARCHAR(50) NOT NULL
             $table->string('Descripcion', 255)->nullable(); // VARCHAR(255)
-            $table->timestamps();
         });
 
         // 2. Tabla Puestos
@@ -20,7 +19,6 @@ return new class extends Migration
             $table->id('ID_puesto');
             $table->string('Puesto', 50);
             $table->string('Descripcion', 255)->nullable();
-            $table->timestamps();
         });
 
         // 3. Tabla Admins
@@ -34,8 +32,6 @@ return new class extends Migration
             // Llaves Foráneas (FK)
             $table->foreignId('ID_usuario')->constrained('usuarios', 'ID_usuario'); // FK hacia Usuarios
             $table->foreignId('ID_Acceso')->constrained('accesos', 'ID_Acceso'); // FK hacia Accesos
-
-            $table->timestamps();
         });
 
         // 4. Tabla Eventos
@@ -47,8 +43,6 @@ return new class extends Migration
 
             // Llave Foránea hacia Admins
             $table->foreignId('ID_admin')->constrained('admins', 'ID_admin'); // FK hacia Admins
-
-            $table->timestamps();
         });
     }
 

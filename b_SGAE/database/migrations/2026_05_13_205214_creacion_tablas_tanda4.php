@@ -14,7 +14,6 @@ return new class extends Migration
             $table->integer('Unidades');
             $table->integer('Creditos');
             $table->foreignId('ID_periodo')->constrained('periodos', 'ID_periodo');
-            $table->timestamps();
         });
 
         // 2. Tabla Profesores (Depende de usuarios, especialidades, titulos, grupos, asignaturas)
@@ -27,7 +26,6 @@ return new class extends Migration
             $table->foreignId('ID_titulo')->constrained('titulos', 'ID_titulo');
             $table->foreignId('ID_grupo')->constrained('grupos', 'ID_grupo');
             $table->foreignId('ID_asignatura')->constrained('asignaturas', 'ID_asignatura');
-            $table->timestamps();
         });
 
         // 3. Tabla Calificaciones (Depende de alumnos, asignaturas, profesores, periodos)
@@ -39,14 +37,12 @@ return new class extends Migration
             $table->foreignId('ID_asignatura')->constrained('asignaturas', 'ID_asignatura');
             $table->foreignId('ID_profe')->constrained('profesores', 'ID_profe');
             $table->foreignId('ID_periodo')->constrained('periodos', 'ID_periodo');
-            $table->timestamps();
         });
 
         // 4. Tabla Días
         Schema::create('dias', function (Blueprint $table) {
             $table->id('ID_dia');
             $table->string('Dia', 20);
-            $table->timestamps();
         });
 
         // 5. Tabla Horarios (Depende de asignaturas, grupos, profesores, dias)
@@ -58,7 +54,6 @@ return new class extends Migration
             $table->foreignId('ID_grupo')->constrained('grupos', 'ID_grupo');
             $table->foreignId('ID_profe')->constrained('profesores', 'ID_profe');
             $table->foreignId('ID_dia')->constrained('dias', 'ID_dia');
-            $table->timestamps();
         });
     }
 
